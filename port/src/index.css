@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Outfit:wght@300;400;500;600&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: #19171b;
+  --color-red: #75020f;
+  --color-wine: #51080d;
+  --color-deep: #2b0307;
+  --color-light: #EDE7E0;
+  --color-muted: #8C8683;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #19171b;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: #19171b;
+  color: #EDE7E0;
+  cursor: none;
+  overflow-x: hidden;
+}
+
+/* hide scrollbar while still scrollable */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #19171b; }
+::-webkit-scrollbar-thumb { background: #51080d; }
+
+/* custom cursor */
+#cursor {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: #75020f;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, border 0.15s ease;
+}
+
+#cursor.expanded {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 1.5px solid #75020f;
+}
+
+@media (pointer: coarse) {
+  body { cursor: auto; }
+  #cursor { display: none; }
+}
+
+/* fade-in animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* display font helper */
+.font-display {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+/* project card hover underline */
+.project-underline::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: #75020f;
+  width: 0;
+  transition: width 0.3s ease;
+  margin-top: 4px;
+}
+
+.project-card:hover .project-underline::after {
+  width: 100%;
+}
+
+.project-card:hover .arrow-icon {
+  transform: translateX(5px);
+}
+
+.arrow-icon {
+  transition: transform 0.25s ease;
+}
+
+.project-card:hover .thumb-img {
+  transform: scale(1.04);
+}
+
+.thumb-img {
+  transition: transform 0.4s ease;
+}
